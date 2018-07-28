@@ -5628,6 +5628,14 @@ react-native-svg@6.2.2:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
+react-native-svg@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.5.0.tgz#a4ebdd16a3395ef8db7aaa38fc9938814b2a728f"
+  dependencies:
+    color "^2.0.1"
+    lodash "^4.16.6"
+    pegjs "^0.10.0"
+
 react-native-vector-icons@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.5.0.tgz#6b95619e64f62f05f579f74a01fe5640df95158b"

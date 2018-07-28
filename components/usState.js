@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, Platform, Text, View, Button, TouchableHighlight,
          Image, SectionList, ScrollView } from 'react-native';
 import { SearchBar, List, ListItem, Avatar } from 'react-native-elements';
-
+import Svg,{
+    Polygon
+} from 'react-native-svg';
 
 export default class USState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundColor: 'pink'
+      backgroundColor: 'pink',
+      svgHeight: 0,
+      svgWidth: 0
     };
   }
   
@@ -22,17 +26,21 @@ export default class USState extends React.Component {
         backgroundColor: 'pink'
       });
     }
+    this.props.selectedState(this.props.usState.name);
   }
+  
+  
 
   render() {
     return (
-      <ListItem containerStyle={{backgroundColor: this.state.backgroundColor}}
-          // roundAvatar
-          avatar={this.props.usState.avatar_url}
-          key={this.props.idx + 'hi' + Date.now()}
-          title={this.props.usState.name}
-          onPress={() => this.selectState()}
-      />
+      <View>
+        <ListItem containerStyle={{backgroundColor: this.state.backgroundColor}}
+            // roundAvatar
+            avatar={this.props.usState.avatar_url}
+            title={this.props.usState.name}
+            onPress={() => this.selectState()}
+        />
+      </View>
     );
   }
 }
