@@ -10,20 +10,20 @@ export default class USState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundColor: 'pink',
+      backgroundColor: '#baefee',
       svgHeight: 0,
       svgWidth: 0
     };
   }
   
   selectState() {
-    if (this.state.backgroundColor === 'pink') {
+    if (this.state.backgroundColor === '#baefee') {
       this.setState({
-        backgroundColor: 'yellow'
+        backgroundColor: '#74adb1'
       });
     } else {
       this.setState({
-        backgroundColor: 'pink'
+        backgroundColor: '#baefee'
       });
     }
     this.props.selectedState(this.props.usState.name);

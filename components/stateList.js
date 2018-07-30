@@ -8,9 +8,6 @@ import USState from './usState';
 export default class stateList extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   padding: 3
-    // };
   }
 
   render() {
@@ -33,6 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listItem: {
-    backgroundColor: 'pink',
+    backgroundColor: '#74adb1',
   }
 });
