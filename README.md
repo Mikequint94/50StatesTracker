@@ -5,6 +5,7 @@ ToDo:
 * Persistance check!
 * Tab for countries and do that
 * counter for number visited
+* loader spinner or something
 
 
 
