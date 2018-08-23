@@ -90,30 +90,52 @@ let list = [
     name: 'Massachusetts',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
   },
+  {
+    name: 'Michigan',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  },
+  {
+    name: 'Minnesota',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  },
 ];
+let stateCount = 0;
 
 export default class AppEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      refresh: false
-      //add something so that it refreshes statemap when selectedstate is called
+      refresh: false,
+      count: 0
     };
-    this._retrieveData();
+    this._retrieveList();
+    this._retrieveCount();
   }
 
-  _retrieveData = async () => {
+  _retrieveList = async () => {
     try {
       const value = await AsyncStorage.getItem('stateList')
       .then(req => JSON.parse(req))
       .then(json => {
-        list = json;
+        if (json) {
+          list = json;
+        }
         this.setState({
           refresh: !this.state.refresh
-        })
+        });
         this.setState({
           refresh: !this.state.refresh
-        })
+        });
+      });
+     } catch (error) {
+       console.log('error', error);
+     }
+   }
+  _retrieveCount = async () => {
+    try {
+      const count = await AsyncStorage.getItem('stateCount');
+      this.setState({
+        count: parseInt(count)
       });
      } catch (error) {
        console.log('error', error);
@@ -123,14 +145,23 @@ export default class AppEntry extends React.Component {
     let selectedState = list.find(state => state.name === stateName);
     selectedState.selected = !selectedState.selected;
     this.setState({
-      refresh: !this.state.refresh
+      refresh: !this.state.refresh,
+      count: this.state.count + (selectedState.selected ? 1: -1)
+    }, () => {
+      this._storeListData();
+      this._storeCountData();
     });
-    // console.log(list, this.state.refresh);
-    this._storeData();
   }
-  _storeData = async () => {
+  _storeListData = async () => {
     try {
       await AsyncStorage.setItem('stateList', JSON.stringify(list));
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+  _storeCountData = async () => {
+    try {
+      await AsyncStorage.setItem('stateCount', JSON.stringify(this.state.count));
     } catch (error) {
       console.log('error', error);
     }
@@ -142,6 +173,7 @@ export default class AppEntry extends React.Component {
                 <Text style={styles.titleText}>50 States</Text>
                 <StateMap list={list}/>
                 <Text style={styles.normalText}>How many have you been to?</Text>
+                <Text style={styles.normalText}>{this.state.count + '/50'}</Text>
           </View>
           <StateList selectedState={this.selectedState.bind(this)} list={list}/>
         </View>
@@ -151,7 +183,7 @@ export default class AppEntry extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: .9,
+    flex: 1,
     borderBottomWidth: 3,
     borderBottomColor: '#043ea7',
     alignItems: 'center',
@@ -163,14 +195,14 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 50,
-    paddingTop: 10,
+    paddingTop: 14,
     color: '#2abbec',
-    fontFamily: 'Cochin',
+    // fontFamily: 'Cochin',
     fontWeight: 'bold'
   },
   normalText: {
     fontSize: 25,
     color: '#043ea7',
-    fontFamily: 'Cochin'
+    // fontFamily: 'Cochin'
   }
 });

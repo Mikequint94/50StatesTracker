@@ -17,31 +17,17 @@ export default class USState extends React.Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.usState.selected) {
-      this.setState({
-        backgroundColor: '#74adb1'
-      });
-    } else {
-      this.setState({
-        backgroundColor: '#baefee'
-      });
-    }
+    this.setState({
+      backgroundColor: (this.props.usState.selected ? '#74adb1': '#baefee')
+    });
   }
 
   selectState() {
-    if (this.state.backgroundColor === '#baefee') {
-      this.setState({
-        backgroundColor: '#74adb1'
-      });
-    } else {
-      this.setState({
-        backgroundColor: '#baefee'
-      });
-    }
+    this.setState({
+      backgroundColor: (this.state.backgroundColor === '#baefee' ? '#74adb1' : '#baefee')
+    });
     this.props.selectedState(this.props.usState.name);
   }
-
-
 
   render() {
     return (

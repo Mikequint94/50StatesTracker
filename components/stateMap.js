@@ -7,24 +7,25 @@ export default class stateMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     California: false,
-     Alabama: false,
-     Arizona: false,
-     Arkansas: false,
-     Alaska: false,
-     Colorado: false,
-     Connecticut: false,
-     Delaware: false,
-     Florida: false,
-     Georgia: false,
-     Hawaii: false,
-     Idaho: false,
-     Illinois: false,
-     Indiana: false,
-     Iowa: false,
-     Kansas: false,
-     Kentucky: false,
-   };
+     // California: false,
+     // Alabama: false,
+     // Arizona: false,
+     // Arkansas: false,
+     // Alaska: false,
+     // Colorado: false,
+     // Connecticut: false,
+     // Delaware: false,
+     // Florida: false,
+     // Georgia: false,
+     // Hawaii: false,
+     // Idaho: false,
+     // Illinois: false,
+     // Indiana: false,
+     // Iowa: false,
+     // Kansas: false,
+     // Kentucky: false,
+
+    };
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ export default class stateMap extends React.Component {
 
   drawStates() {
     this.props.list.map(state => {
-        this.state[state.name] = state.selected;
+      this.state[state.name] = state.selected;
     });
   }
 
@@ -240,6 +241,66 @@ export default class stateMap extends React.Component {
       );
     }
   }
+  _renderLouisiana() {
+    if (this.state.Louisiana) {
+      return (
+        <Polygon points="234,140,251,140,253,142,253,146,251,148,250,152,250,155,261,154,262,156,263,158,260,158,258,160,260,160,262,161,266,160,264,163,267,167,263,165,261,166,257,167,253,165,249,162,247,165,245,165,242,164,239,163,236,164,236,162,237,158,239,157,238,153,237,151,236,148,234,146"
+        fill="forestgreen"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
+  _renderMaine() {
+    if (this.state.Maine) {
+      return (
+        <Polygon points="353,32,355,29,356,22,355,20,357,19,357,16,359,15,363,14,365,15,367,20,368,24,370,26,372,27,373,30,370,34,368,33,367,36,365,37,363,39,360,41,359,45,357,44,356,41"
+        fill="fuchsia"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
+  _renderMaryland() {
+    if (this.state.Maryland) {
+      return (
+        <Polygon points="317,86,317,82,320,82,333,80,336,79,340,88,342,87,342,91,338,88,337,82,335,84,335,87,335,90,331,90,332,87,328,84,326,85,323,83"
+        fill="gold"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
+  _renderMassachusetts() {
+    if (this.state.Massachusetts) {
+      return (
+        <Polygon points="364,53,365,56,363,56,359,53,359,48,356,51,350,52,346,53,346,58,355,55,357,55,360,58"
+        fill="green"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
+  _renderMichigan() {
+    if (this.state.Michigan) {
+      return (
+        <Polygon points="252,38,263,30,261,34,264,35,266,37,269,37,274,36,278,35,281,36,284,38,281,40,284,42,286,43,288,44,288,47,289,50,287,55,291,54,293,53,296,61,294,63,293,65,292,69,290,71,275,71,276,68,276,62,275,59,274,55,274,50,278,48,280,45,281,42,279,39,275,40,272,42,269,43,268,45,269,47,266,46,265,42,260,42,258,39,254,40"
+        fill="greenyellow"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
+  _renderMinnesota() {
+    if (this.state.Minnesota) {
+      return (
+        <Polygon points="299,106,310,106,320,104,332,102,341,100,340,98,337,97,338,94,337,92,335,91,332,90,330,89,331,87,327,83,326,85,324,84,323,87,322,89,320,90,320,92,318,92,317,95,316,98,315,100,313,100,311,101,310,103,308,102,307,104,304,102,302,104"
+        fill="hotpink"
+        stroke="#2abbec"
+        strokeWidth="1"/>
+      );
+    }
+  }
   render() {
     return (
       <View style={{width: 380, height: 200}}>
@@ -270,6 +331,12 @@ export default class stateMap extends React.Component {
         {this._renderIowa()}
         {this._renderKansas()}
         {this._renderKentucky()}
+        {this._renderLouisiana()}
+        {this._renderMaine()}
+        {this._renderMaryland()}
+        {this._renderMassachusetts()}
+        {this._renderMichigan()}
+        {this._renderMinnesota()}
         </Svg>
       </View>
     );

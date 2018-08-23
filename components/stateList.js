@@ -25,11 +25,11 @@ export default class stateList extends React.Component {
   render() {
     return (
       <ScrollView>
-          {
-            this.props.list.map((usState, idx) => (
-              <USState selectedState={this.props.selectedState} usState={usState} idx={idx} key={idx}/>
-            ))
-          }
+      {
+        this.props.list.map((usState, idx) => (
+          <USState selectedState={this.props.selectedState} usState={usState} idx={idx} key={idx}/>
+        ))
+      }
       </ScrollView>
     );
   }
