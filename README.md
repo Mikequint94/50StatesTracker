@@ -1,3 +1,13 @@
+ToDo:
+* Make Coordinates better for all states using new site http://imagemap-generator.dariodomi.de/
+* Colors for states better
+* Avatars for states on list
+* Persistance check!
+* Tab for countries and do that
+* counter for number visited
+
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

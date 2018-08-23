@@ -15,7 +15,19 @@ export default class USState extends React.Component {
       svgWidth: 0
     };
   }
-  
+
+  componentWillReceiveProps() {
+    if (this.props.usState.selected) {
+      this.setState({
+        backgroundColor: '#74adb1'
+      });
+    } else {
+      this.setState({
+        backgroundColor: '#baefee'
+      });
+    }
+  }
+
   selectState() {
     if (this.state.backgroundColor === '#baefee') {
       this.setState({
@@ -28,8 +40,8 @@ export default class USState extends React.Component {
     }
     this.props.selectedState(this.props.usState.name);
   }
-  
-  
+
+
 
   render() {
     return (

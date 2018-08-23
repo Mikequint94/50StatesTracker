@@ -8,18 +8,28 @@ import USState from './usState';
 export default class stateList extends React.Component {
   constructor(props) {
     super(props);
+    // console.log(this.props.list);
+    this.state = {
+      refresh: false
+      //add something so that it refreshes statemap when selectedstate is called
+    };
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      refresh: !this.state.refresh
+    });
+    // console.log(this.props.list);
   }
 
   render() {
     return (
       <ScrollView>
-        <List containerStyle={styles.container}>
           {
             this.props.list.map((usState, idx) => (
               <USState selectedState={this.props.selectedState} usState={usState} idx={idx} key={idx}/>
             ))
           }
-        </List>
       </ScrollView>
     );
   }
@@ -28,8 +38,6 @@ export default class stateList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  listItem: {
-    backgroundColor: '#74adb1',
+    backgroundColor: '#74adb1'
   }
 });

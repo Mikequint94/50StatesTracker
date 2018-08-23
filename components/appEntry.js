@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, AsyncStorage} from 'react-native';
 import StateList from './stateList';
 import StateMap from './stateMap';
+
+
 
 let list = [
   {
     name: 'Alabama',
     avatar_url: require('../pics/alabama-outline-pattern.png'),
-    coords: "578,268,578,337,590,337,588,329,618,321,618,299,608,264",
-    selected: false
   },
   {
     name: 'Alaska',
@@ -25,8 +25,6 @@ let list = [
   {
     name: 'California',
     avatar_url: require('../pics/california-outline-pattern.png'),
-    coords: "146,113,193,126,181,171,234,247,234,254,237,262,231,264,229,269,226,278,196,279,192,261,181,253,173,244,158,236,162,222,150,207,152,194,145,184,147,176,143,170,142,161,141,148,137,134,143,131",
-    selected: false
   },
   {
     name: 'Colorado',
@@ -57,6 +55,18 @@ let list = [
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
   },
   {
+    name: 'Illinois',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  },
+  {
+    name: 'Indiana',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  },
+  {
+    name: 'Iowa',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  },
+  {
     name: 'Kansas',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
   },
@@ -82,22 +92,48 @@ let list = [
   },
 ];
 
-  
 export default class AppEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hello: false
+      refresh: false
       //add something so that it refreshes statemap when selectedstate is called
     };
+    this._retrieveData();
   }
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('stateList')
+      .then(req => JSON.parse(req))
+      .then(json => {
+        list = json;
+        this.setState({
+          refresh: !this.state.refresh
+        })
+        this.setState({
+          refresh: !this.state.refresh
+        })
+      });
+     } catch (error) {
+       console.log('error', error);
+     }
+   }
   selectedState(stateName){
     let selectedState = list.find(state => state.name === stateName);
     selectedState.selected = !selectedState.selected;
     this.setState({
-      hello: !this.state.hello
-    })
-    console.log(list, this.state.hello);
+      refresh: !this.state.refresh
+    });
+    // console.log(list, this.state.refresh);
+    this._storeData();
+  }
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('stateList', JSON.stringify(list));
+    } catch (error) {
+      console.log('error', error);
+    }
   }
   render() {
     return (
@@ -115,16 +151,19 @@ export default class AppEntry extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: .7,
-    backgroundColor: '#baefee',
+    flex: .9,
+    borderBottomWidth: 3,
+    borderBottomColor: '#043ea7',
     alignItems: 'center',
     justifyContent: 'center'
   },
   containerBig: {
     flex: 1,
+    backgroundColor: '#baefee'
   },
   titleText: {
     fontSize: 50,
+    paddingTop: 10,
     color: '#2abbec',
     fontFamily: 'Cochin',
     fontWeight: 'bold'
